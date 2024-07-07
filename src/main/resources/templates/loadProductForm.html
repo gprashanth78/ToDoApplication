@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>To Do Application</title>
+	<title>Pharmacy Application</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
@@ -11,7 +11,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">To Do Application</a>
+			<a class="navbar-brand" href="#">Pharmacy Application</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
@@ -29,36 +29,33 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
-				<form th:action="@{/addToDoDetails}" method="post">
+				<form th:action="@{/addProduct}" method="post">
 
 					<caption>
-						<h2>Add New Todo</h2>
+						<h2>Add Medicine here</h2>
 					</caption>
 
 					<fieldset class="form-group">
-						<label>Todo Title</label>
-						<input type="text" th:value="${todoDetails.title}" class="form-control" name="title" required
-							minlength="5">
+						<label>Product Name</label>
+						<input type="text" th:value="${product.name}" class="form-control" name="name" required="required">
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Todo Description</label>
-						<input type="text" th:value="${todoDetails.description}" class="form-control" name="description"
-							minlength="5">
+						<label>Company Name</label>
+						<input type="text" th:value="${product.company}" class="form-control" name="company" required="required">
 					</fieldset>
 
 					<fieldset class="form-group">
-						<label>Todo Target Date</label>
-						<input type="date" th:value="${todoDetails.targetDate}" class="form-control" name="targetDate"
-							required>
+						<label>Dose</label>
+						<input type="text" th:value="${product.dose}" class="form-control" name="dose" required="required">
 					</fieldset>
-					
 					<fieldset class="form-group">
-						<label>Todo Status</label>
-						<select class="form-control" name="status" th:value="${todoDetails.status}">
-							<option value="false">In Progress</option>
-							<option value="true">Complete</option>
-						</select>
+						<label>Stock</label>
+						<input type="text" th:value="${product.inStock}" class="form-control" name="inStock" required="required">
+					</fieldset>
+					<fieldset class="form-group">
+						<label>Price</label>
+						<input type="text" th:value="${product.price}" class="form-control" name="price" required="required">
 					</fieldset>
 
 					<button type="submit" class="btn btn-success">Save</button>

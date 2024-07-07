@@ -14,7 +14,7 @@
 		}
 
 		.center-table input {
-			width: 100%;
+			width: 50%;
 		}
 	</style>
 </head>
@@ -22,7 +22,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">To Do Application</a>
+			<a class="navbar-brand" href="#">Pharmacy App</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
@@ -39,30 +39,34 @@
 	</nav>
 	<div class="row">
 		<div class="container">
-			<h3 class="text-center">List of Todos</h3>
+			<h3 class="text-center">Medicines List</h3>
 			<div class="container text-left">
-				<a th:href="@{/loadTodoForm}" class="btn btn-success">Add Todo</a>
+				<a th:href="@{/loadProductForm}" class="btn btn-success">Add Medicine</a>
+				<a th:href="@{'/create/'+{product.productId}}" class="btn btn-success">Place Order</a>
 			</div>
 			<br>
 			<table class="table table-bordered table-center width-50%">
 				<thead>
 					<tr>
-						<th>ToDo ID</th>
-						<th>Title</th>
-						<th>Target Date</th>
-						<th>Todo Status</th>
+						<th>Product ID</th>
+						<th>Product Name</th>
+						<th>Dose</th>
+						<th>In Stock</th>
+						<th>Price</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="todoDetails : ${toDoDetailsList}">
-						<td th:text="${todoDetails.id}"></td>
-						<td th:text="${todoDetails.title}"></td>
-						<td th:text="${todoDetails.targetDate}"></td>
-						<td th:text="${todoDetails.status}"></td>
+					<tr th:each="product : ${productsList}">
+						<td th:text="${product.productId}"></td>
+						<td th:text="${product.name}"></td>
+						<td th:text="${product.dose}"></td>
+						<td th:text="${product.inStock}"></td>
+						<td th:text="${product.price}"></td>
 						<td>
-							<a th:href="@{'/editToDoDetails/' + ${todoDetails.id}}" class="btn btn-primary">Edit</a>
-							<a th:href="@{'/deleteToDo/' + ${todoDetails.id}}" class="btn btn-danger">Delete</a>
+							<a th:href="@{'/editProductDetails/' + ${product.productId}}" class="btn btn-primary">Edit</a>
+							<a th:href="@{'/deleteProduct/' + ${product.productId}}" class="btn btn-danger">Delete</a>
+							 <a th:href="@{'/create/' + ${product.productId}}" class="btn btn-success">Place Order</a>
 						</td>
 					</tr>
 				</tbody>

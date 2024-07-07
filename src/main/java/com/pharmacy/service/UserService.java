@@ -1,11 +1,12 @@
-package com.todoApp.service;
+package com.pharmacy.service;
 
 import java.util.List;
 
-import com.todoApp.entity.User;
-import com.todoApp.userDto.UserDto;
+import com.pharmacy.entity.User;
+import com.pharmacy.userDto.UserDto;
 
 public interface UserService {
+	
 	void saveUser(UserDto userDto);
 
 	User findByEmail(String email);

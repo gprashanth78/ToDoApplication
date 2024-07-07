@@ -1,4 +1,4 @@
-package com.todoApp.config;
+package com.pharmacy.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,15 +32,13 @@ public class SpringSecurity {
 				   .permitAll()
 				   .antMatchers("/index")
 				   .permitAll()
-				   .antMatchers("/users")
-				   .permitAll()
-				   .antMatchers("/getAllToDoDetails")
+				   .antMatchers("/getAllProducts")
 				   .hasRole("ADMIN")
 				   .and()
 				   .formLogin()
 				   .loginPage("/login")
 				   .loginProcessingUrl("/login")
-				   .defaultSuccessUrl("/getAllToDoDetails")
+				   .defaultSuccessUrl("/getAllProducts")
 				   .permitAll().and().logout()
 				   .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				   .permitAll();

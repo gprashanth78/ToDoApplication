@@ -1,4 +1,4 @@
-package com.todoApp.security;
+package com.pharmacy.security;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.todoApp.entity.Role;
-import com.todoApp.entity.User;
-import com.todoApp.repository.UserRepository;
+import com.pharmacy.entity.Role;
+import com.pharmacy.entity.User;
+import com.pharmacy.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

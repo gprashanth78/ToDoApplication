@@ -1,7 +1,8 @@
-package com.todoApp.controller;
+package com.pharmacy.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,18 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.todoApp.entity.User;
-import com.todoApp.service.UserService;
-import com.todoApp.userDto.UserDto;
+import com.pharmacy.entity.User;
+import com.pharmacy.service.UserService;
+import com.pharmacy.userDto.UserDto;
 
 @Controller
-public class AuthController {
+public class UserController {
 
+	@Autowired
 	private UserService userService;
-
-	public AuthController(UserService userService) {
-		this.userService = userService;
-	}
 
 	@GetMapping("index")
 	public String home() {
@@ -33,16 +31,14 @@ public class AuthController {
 		return "login";
 	}
 
-	// handler method to handle user registration request
-	@GetMapping("register")
-	public String showRegistrationForm(Model model) {
+	@GetMapping("/loadRegistrationForm")
+	public String loadRegistrationForm(Model model) {
 		UserDto user = new UserDto();
 		model.addAttribute("user", user);
 		return "register";
 	}
 
-	// handler method to handle register user form submit request
-	@PostMapping("/register/save")
+	@PostMapping("/register")
 	public String registration(@Validated @ModelAttribute("user") UserDto user, BindingResult result, Model model) {
 		User existing = userService.findByEmail(user.getEmail());
 		if (existing != null) {
@@ -53,7 +49,7 @@ public class AuthController {
 			return "register";
 		}
 		userService.saveUser(user);
-		return "redirect:/register?success";
+		return "redirect:/loadRegistrationForm?success";
 	}
 
 	@GetMapping("/users")
